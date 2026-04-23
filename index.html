@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NeuralViz Pro | Performance Data Engine</title>
+    <meta name="description" content="Ultra-optimized 3D data visualization engine." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <script type="module" crossorigin src="/neural-viz/assets/index-BaZ51Za1.js"></script>
+    <link rel="stylesheet" crossorigin href="/neural-viz/assets/index-DZPNlMNL.css">
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="canvas-3d"></canvas>
+      
+      <div class="hud-container">
+        <!-- Top Navigation -->
+        <header class="glass-panel top-bar">
+          <div class="brand">
+            <span class="pulse-dot"></span>
+            <h1>NEURAL VIZ <small>PRO</small></h1>
+          </div>
+          
+          <nav class="mode-selector" id="mode-selector">
+            <button class="mode-btn active" data-mode="graph">Graph</button>
+            <button class="mode-btn" data-mode="neural">Pathway</button>
+            <button class="mode-btn" data-mode="orbital">Orbital</button>
+            <button class="mode-btn" data-mode="flow">Flow Field</button>
+            <button class="mode-btn" data-mode="spiral">Spiral</button>
+            <button class="mode-btn" data-mode="radial">Radial</button>
+          </nav>
+
+          <div class="header-actions">
+            <button id="audio-toggle" class="icon-btn" title="Audio Reactive Mode">
+              <span class="icon">♪</span>
+            </button>
+            <div class="fps-meter">
+              <span id="fps-counter">60</span><small>FPS</small>
+            </div>
+          </div>
+        </header>
+
+        <main class="main-layout">
+          <!-- Left: Performance & Controls -->
+          <aside class="glass-panel side-panel performance-panel">
+            <section class="control-group">
+              <h3>Performance</h3>
+              <div class="control-item">
+                <label>Engine Quality</label>
+                <select id="quality-select">
+                  <option value="low">Efficiency</option>
+                  <option value="medium" selected>Balanced</option>
+                  <option value="high">Maximum</option>
+                </select>
+              </div>
+              <div class="control-item vertical">
+                <label>Node Density (<span id="node-val">400</span>)</label>
+                <input type="range" id="density-slider" min="100" max="2000" step="100" value="400">
+              </div>
+              <div class="control-item">
+                <label>Enable Glow</label>
+                <input type="checkbox" id="glow-toggle" checked>
+              </div>
+              <div class="control-item">
+                <label>Motion Trails</label>
+                <input type="checkbox" id="trails-toggle">
+              </div>
+            </section>
+
+            <section class="control-group">
+              <h3>Simulation</h3>
+              <div class="control-item vertical">
+                <label>Flow Speed</label>
+                <input type="range" id="speed-slider" min="0" max="5" step="0.1" value="1.5">
+              </div>
+              <button id="regenerate-btn" class="primary-btn">Reset Simulation</button>
+            </section>
+
+            <section class="control-group">
+              <h3>Data Input</h3>
+              <div class="upload-zone" id="drop-zone">
+                <p>Drop JSON/CSV</p>
+                <input type="file" id="file-input" accept=".json,.csv" hidden>
+                <button class="secondary-btn small" onclick="document.getElementById('file-input').click()">Upload</button>
+              </div>
+            </section>
+          </aside>
+
+          <!-- Right: Analysis Panel -->
+          <aside class="glass-panel side-panel description-panel" id="mode-info">
+            <header>
+              <h2 id="mode-display-name">Graph Mode</h2>
+              <span class="mode-tag">Architecture</span>
+            </header>
+            <div class="panel-content">
+              <section>
+                <h3>System Purpose</h3>
+                <p id="mode-purpose">Visualizing complex, unstructured relationships between data points.</p>
+              </section>
+              <section>
+                <h3>Real-World Use Case</h3>
+                <div class="example-box">
+                  <strong id="mode-example-title">Social Networks</strong>
+                  <p id="mode-example-desc">Mapping connections to identify community clusters.</p>
+                </div>
+              </section>
+            </div>
+            
+            <!-- Selected Node Info (Conditional) -->
+            <div id="node-details" class="node-details-card" style="display: none;">
+              <div class="card-header">
+                <h4 id="node-title">NODE_0x42</h4>
+                <button id="close-details">×</button>
+              </div>
+              <div class="metrics-grid">
+                <div class="m-item"><span>Activity</span><strong id="node-activity">94%</strong></div>
+                <div class="m-item"><span>Latency</span><strong id="node-latency">12ms</strong></div>
+              </div>
+            </div>
+          </aside>
+        </main>
+
+        <!-- Audio Visualizer Bar -->
+        <div class="audio-visualizer" id="audio-viz">
+          <div class="bar-container"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
